@@ -1,7 +1,6 @@
 package com.kaspersky.kaspresso.device.screenshots.screenshotmaker
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.uiautomator.UiDevice
+import com.kaspersky.kaspresso.device.uiDevice
 import java.io.File
 
 /**
@@ -10,6 +9,6 @@ import java.io.File
 class ExternalScreenshotMaker : ScreenshotMaker {
 
     override fun takeScreenshot(file: File) {
-        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).takeScreenshot(file)
+       uiDevice.takeScreenshot(file)
     }
 }

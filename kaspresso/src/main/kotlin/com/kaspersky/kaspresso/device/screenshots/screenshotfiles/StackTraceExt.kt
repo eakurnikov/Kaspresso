@@ -9,7 +9,7 @@ private const val TEST_CASE_METHOD_JUNIT_4 = "runReflectiveCall"
 private const val TEST_CASE_CLASS_CUCUMBER_JVM = "cucumber.runtime.model.CucumberFeature"
 private const val TEST_CASE_METHOD_CUCUMBER_JVM = "run"
 
-internal fun Array<StackTraceElement>.findTestMethod(): TestMethod {
+fun Array<StackTraceElement>.findTestMethod(): TestMethod {
     return findTestClassTraceElement()
         .let { TestMethod(it.className, it.methodName) }
 }

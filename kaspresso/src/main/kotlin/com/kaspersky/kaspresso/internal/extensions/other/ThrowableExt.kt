@@ -8,7 +8,7 @@ import java.io.StringWriter
 /**
  * @return the stack trace of the [Throwable] as a [String].
  */
-internal fun Throwable.getStackTraceAsString(): String =
+fun Throwable.getStackTraceAsString(): String =
     StringWriter().also { printStackTrace(PrintWriter(it)) }.toString()
 
 internal inline fun <reified T : Throwable> invokeSafely(
