@@ -3,4 +3,5 @@ include':kaspresso',
         ':allure-model',
         ':kautomator',
         ':sample_upgrade_tests',
-        ':sample_kautomator'
+        ':sample_kautomator',
+        ':kaspresso_interceptors'

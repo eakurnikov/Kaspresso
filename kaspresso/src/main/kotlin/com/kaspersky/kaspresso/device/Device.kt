@@ -19,6 +19,23 @@ import com.kaspersky.kaspresso.device.phone.Phone
 import com.kaspersky.kaspresso.device.screenshots.Screenshots
 
 /**
+ * A not caching property to get [Context].
+ */
+val context: Context
+    get() = InstrumentationRegistry.getInstrumentation().context
+
+/**
+ * A not caching property to get target [Context].
+ */
+val targetContext: Context
+    get() = InstrumentationRegistry.getInstrumentation().targetContext
+
+/**
+ * A property to get the instance of [UiDevice].
+ */
+val uiDevice: UiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+
+/**
  * The provider of managers for all off-screen work.
  */
 data class Device(
@@ -120,21 +137,4 @@ data class Device(
      * Holds the reference to the implementation of [Logcat] interface.
      */
     val logcat: Logcat
-) {
-    /**
-     * A not caching property to get [Context].
-     */
-    val context: Context
-        get() = InstrumentationRegistry.getInstrumentation().context
-
-    /**
-     * A not caching property to get target [Context].
-     */
-    val targetContext: Context
-        get() = InstrumentationRegistry.getInstrumentation().targetContext
-
-    /**
-     * A property to get the instance of [UiDevice].
-     */
-    val uiDevice: UiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
-}
+)

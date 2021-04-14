@@ -19,7 +19,11 @@ class ScreenshotsImpl(
     screenshotRootDir: File = File("screenshots")
 ) : Screenshots, ScreenshotTestStartListener {
 
-    private val fileProvider = ScreenshotFileProvider(screenshotDirectoryProvider, screenshotNameProvider, screenshotRootDir)
+    private val fileProvider = ScreenshotFileProvider(
+        screenshotDirectoryProvider,
+        screenshotNameProvider,
+        screenshotRootDir
+    )
 
     /**
      * Takes a screenshot if it is possible, otherwise logs the error.
@@ -30,14 +34,13 @@ class ScreenshotsImpl(
      *
      * @param tag a unique tag to further identify the screenshot. Must match [a-zA-Z0-9_-]+.
      */
-    override fun take(tag: String) {
+    override fun take(tag: String): File? =
         runCatching {
-            val file = fileProvider.getScreenshotFile(tag)
-            screenshotMaker.takeScreenshot(file)
+            fileProvider.getScreenshotFile(tag).also { screenshotMaker.takeScreenshot(it) }
         }.onFailure { e ->
             logger.e("An error while making screenshot occurred: ${e.getStackTraceAsString()}")
-        }
-    }
+        }.getOrNull()
+
 
     override fun onTestStarted() {
         fileProvider.incrementRunNumberOfCurrentTest()
